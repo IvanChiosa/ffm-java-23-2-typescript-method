@@ -1,27 +1,73 @@
 package com.example.ffmjava232asterixapi;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
+
 @RestController
 @RequestMapping("/asterix")
+
 public class AsterixController {
 
     private List<Character> characterList = new ArrayList<>();
 
-    @Autowired
-    private AsterixService asterixService;
+    private final AsterixService asterixService;
 
-//    @GetMapping("/characters")
+
+    // Add an 1 character
+    @PostMapping("/characters")
+    public Character addCharacter(@RequestBody Character newCharacter) {
+        return asterixService.addCharacter(newCharacter);
+    }
+
+    // Endpoint to get the list af Characters
+    @GetMapping("/characters")
+    public List<Character> getCharactersList() {
+        return asterixService.getAllCharacters();
+    }
+
+    // Endpoint to update an existing character
+    @PutMapping("/characters/{id}")
+    public Character updateCharacter(@PathVariable String id, @RequestBody Character updatedCharacter) {
+        return asterixService.updateCharacter(id, updatedCharacter);
+    }
+
+    // Endpoint to delete an existing character
+    @DeleteMapping("/characters/{id}")
+    public void deleteCharacter(@PathVariable String id) {
+        asterixService.deleteCharacter(id);
+    }
+
+
+    // Endpoint to get the average age of characters for a specific profession
+    @GetMapping("/averageAge/{profession}")
+    public int getAverageAgeByProfession(@PathVariable String profession) {
+        return asterixService.getAverageAgeByProfession(profession);
+    }
+
+    @Autowired
+    public AsterixController(AsterixService asterixService) {
+        this.asterixService = asterixService;
+    }
+
+    @PostMapping("/create")
+    public AsterixDTO createAsterix(@RequestBody Character character) {
+        return asterixService.createAsterixDTO(character);
+    }
+
+
+
+    //    @PostMapping
+//    public List<Character> saveCharacter(@RequestBody List<Character> character) {
+//        return asterixService.saveCharacter(character);
+//    }
+
+    //    @GetMapping("/characters")
 //    public List<Character> getCharacterList() {
 //        return List.of(
 //                new Character("1", "Asterix", 35, "Krieger"),
@@ -43,34 +89,6 @@ public class AsterixController {
 //        characterList.addAll(newCharacter);
 //        return characterList;
 //    }
-
-    // Add an 1 character
-    @PostMapping("/characters")
-    public Character addCharacter(@RequestBody Character newCharacter) {
-        return asterixService.addCharacter(newCharacter);
-    }
-//    @PostMapping
-//    public List<Character> saveCharacter(@RequestBody List<Character> character) {
-//        return asterixService.saveCharacter(character);
-//    }
-
-    // Endpoint to get the list af Characters
-    @GetMapping("/characters")
-    public List<Character> getCharactersList() {
-        return asterixService.getAllCharacters();
-    }
-
-    // Endpoint to update an existing character
-    @PutMapping("/characters/{id}")
-    public Character updateCharacter(@PathVariable String id, @RequestBody Character updatedCharacter) {
-        return asterixService.updateCharacter(id, updatedCharacter);
-    }
-
-    // Endpoint to delete an existing character
-    @DeleteMapping("/characters/{id}")
-    public void deleteCharacter(@PathVariable String id) {
-        asterixService.deleteCharacter(id);
-    }
 }
 
 
