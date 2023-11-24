@@ -1,5 +1,6 @@
 package com.example.ffmjava232asterixapi;
 
+import lombok.Data;
 import lombok.With;
 import org.springframework.data.mongodb.core.mapping.Document;
 
