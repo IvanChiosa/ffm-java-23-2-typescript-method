@@ -18,6 +18,8 @@ public class AsterixController {
     @Autowired
     private AsterixService asterixService;
 
+
+
 //    @GetMapping("/characters")
 //    public List<Character> getCharacterList() {
 //        return List.of(

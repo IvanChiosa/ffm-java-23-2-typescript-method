@@ -16,7 +16,7 @@ class AsterixServiceTest {
 
     AsterixRepo asterixRepo = mock(AsterixRepo.class);
     AsterixDTO asterixDTO = mock(AsterixDTO.class);
-    AsterixService asterixService = new AsterixService(asterixRepo);
+    AsterixService asterixService = new AsterixService();
     @Test
     void getAllCharacters_whenCalled_thenReturnAllCharacters() {
 
