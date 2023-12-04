@@ -49,14 +49,32 @@ function App() {
     }
 
 
-  return (
+    function drawChristmasTree(n: number): void {
+        for (let i = 1; i <= n; i++) {
+            const spaces = ' '.repeat(n - i);
+            const stars = '*'.repeat(2 * i - 1);
+            console.log(spaces + stars);
+        }
+
+        // Print the tree trunk
+        const trunkSpaces = ' '.repeat(n - 1);
+        console.log(trunkSpaces + '*');
+        console.log(trunkSpaces + '*');
+        console.log(trunkSpaces + '*');
+        console.log(trunkSpaces + '*');
+        console.log(trunkSpaces + '*');
+    }
+
+// Call the function with n = 5
+    drawChristmasTree(5);
+
+
+    return (
     <>
+        <h1>Hello World</h1>
      <h1>{age}</h1>
      <h1>{isAdmin}</h1>
-
-
     </>
   )
 }
-
 export default App
