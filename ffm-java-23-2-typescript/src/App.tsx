@@ -67,11 +67,17 @@ function App() {
 // Call the function with n = 5
     drawChristmasTree(5);
 
+
+
+    function sum1(x: number, y: number): number {
+        return x + y;
+    }
+
+
     return (
         <>
             <h1>Hello World</h1>
-            <h1>{age}</h1>
-            <h1>{isAdmin}</h1>
+            <h2>{sum1(5,2)}</h2>
         </>
     )
 }
